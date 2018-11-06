@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function populate(s1,s2){
+	var s1 = document.getElementById(s1);
+	var s2 = document.getElementById(s2);
+	s2.innerHTML = "";
+	if(s1.value == "In Service"){
+		var optionArray = ["|","deployed|Deployed","getty center storage|Getty Center Storage","getty villa storage|Getty Villa Storage"];
+	} else if(s1.value == "Out of Serivce"){
+		var optionArray = ["|","getty center storage|Getty Center Storage","getty villa storage|Getty Villa Storage","emergency bins|Emergency Bins","vendor repair|Vendor Repair"];
+	} else if(s1.value == "Other"){
+		var optionArray = ["|","missing from location|Missing from Location","limited or no access to location|Limited or No Access to Location"];
+	}
+	for(var option in optionArray){
+		var pair = optionArray[option].split("|");
+		var newOption = document.createElement("option");
+		newOption.value = pair[0];
+		newOption.innerHTML = pair[1];
+		s2.options.add(newOption);
+	}
+}
+</script>
+</head>
+<body>
+<h2>Select Status and Condition</h2>
+<hr />
+Status:
+<select id="slct1" name="slct1" onchange="populate(this.id,'slct2')">
+  <option value=""></option>
+  <option value="In Service">In Service</option>
+  <option value="Out of Serivce">Out of Service</option>
+  <option value="Other">Other</option>
+</select>
+<hr />
+Condition:
+<select id="slct2" name="slct2"></select>
+<hr />
+</body>
+</html>
